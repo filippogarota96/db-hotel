@@ -11,7 +11,10 @@ WHERE `date_of_birth` > '1988-12-31';
 3) Seleziona tutti gli ospiti che hanno più di 20 anni (al momento dell’esecuzione della query)
 SELECT * 
 FROM `ospiti` 
-WHERE `date_of_birth` < '1998';
+WHERE DATEDIFF(CURRENT_DATE,`date_of_birth`) > 21;
+SELECT * 
+FROM `ospiti` 
+WHERE YEAR(`date_of_birth`) <= 2001;
 
 4) Seleziona tutti gli ospiti il cui nome inizia con la D
 SELECT *
@@ -28,5 +31,12 @@ SELECT MAX(`price`) AS 'highest_value'
 FROM `pagamenti`;
 
 7) Seleziona gli ospiti riconosciuti con patente e nati nel 1975
+SELECT *
+FROM `ospiti`
+WHERE `document_number` = 'Driver License'
+AND `date_of_birthday` = '1975';
 
 8) Quanti posti letto ha l’hotel in totale?
+SELECT SUM(`beds`) 
+AS 'posti_totali' 
+FROM `stanze`;
