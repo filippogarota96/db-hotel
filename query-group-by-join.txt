@@ -47,6 +47,15 @@ ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`. `id`
 
 3) Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
 
+SELECT `paganti`.`name`, `paganti`.`lastname`, `pagamenti`.`price`, `prenotazioni`.`created_at`
+FROM `paganti`
+INNER JOIN `pagamenti`
+ON `paganti`. `id` = `pagamenti`.`pagante_id`
+INNER JOIN `prenotazioni`
+ON `prenotazioni`.`id` = `pagamenti`.`prenotazione_id`
+ORDER BY  `prenotazioni`.`created_at` DESC 
+LIMIT 15
+
 4) Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
 5) Prendi i dati di fatturazione per la prenotazione con id=7
 6) Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate) 
