@@ -57,5 +57,16 @@ ORDER BY  `prenotazioni`.`created_at` DESC
 LIMIT 15
 
 4) Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
+SELECT `floor` AS 'primo_piano', 
+COUNT(`prenotazioni`.`stanza_id`), 
+SUM(`pagamenti`.`price`) AS 'prezzi_primo_piano'
+FROM `stanze`
+INNER JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+INNER JOIN `pagamenti`
+ON `prenotazioni`.`id`= `pagamenti`.`prenotazione_id`
+GROUP BY `floor`
+ORDER BY `floor`ASC
+LIMIT 1
 5) Prendi i dati di fatturazione per la prenotazione con id=7
 6) Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate) 
